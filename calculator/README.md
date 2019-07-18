@@ -1,15 +1,31 @@
-# Getting Started
+# About the project
 
-### Reference Documentation
-For further reference, please consider the following sections:
+This is spring boot starter web application which exposes restful endpoints which can be used to calculate the interest for the passed in amount. 
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+The interest rate 
+0 - 1000 = 1%
+1000 - 5000 = 2%
+5000 and above = 3%
 
-### Guides
-The following guides illustrate how to use some features concretely:
+The above interest rate is configured in the ENUM with all the required attributes. The same could be configured in the database and can be read through spring JPA with a simple entity class which would get values from DB with simple spring repositories. 
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
+CalculatorController exposes the GET /interest/{amount} as a restful endpoint which injects the CalculatorService to get the interest calculated from the values configured in InterestRate enum. 
 
+
+How to Run the jar:
+
+the compiled version of the code is in the target folder which can be created by running the command 
+
+mvn package
+
+once the jar is created it can be started by running below cammand from project home
+
+java -jar target/calculator-0.0.1-SNAPSHOT.jar
+
+once the application is started the same can be accessed from the browser with
+
+http://localhost:8080/interest/6400 
+
+which will return 132.00
+
+value in the URL can be changed to any value, if  you give 400 for example which will give 4.00
